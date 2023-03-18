@@ -1,0 +1,11 @@
+void o_option(char *line, regmatch_t match, regex_t *reg, Flags *pp,
+              int count_lines, char **filename, int count_files) {
+  printf("%.*s\n", (int)(match.rm_eo - match.rm_so), line + match.rm_so);
+  char *remain = line + match.rm_eo;
+  while (!regexec(reg, remain, 1, &match, 0)) {
+    print_filename(pp, filename, count_files);
+    n_option(pp, count_lines);
+    printf("%.*s\n", (int)(match.rm_eo - match.rm_so), remain + match.rm_so);
+    remain = remain + match.rm_eo;
+  }
+}

@@ -1,0 +1,15 @@
+
+int main(int argc, char **argv) {
+  Flags flags = {0};
+  Flags *pp = &flags;
+  if (argc == 1) {
+    fprintf(stderr, "Usage: ./s21_grep [OPTION]... PATTERNS [FILE]...\n");
+    exit(1);
+  }
+  parser(argc, argv, pp);
+  argv += optind;
+  argc -= optind;
+  grep(argc, argv, pp);
+
+  return 0;
+}

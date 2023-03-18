@@ -1,0 +1,8 @@
+int file_counter(char **argv, char **end, Flags *pp) {
+  int counter = 0;
+  for (char **filename = argv + (pp->size ? 0 : 1); filename != end;
+       ++filename) {
+    counter++;
+  }
+  return counter;
+}
